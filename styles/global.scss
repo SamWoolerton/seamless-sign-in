@@ -18,3 +18,19 @@ img {
     max-width: 100%;
     display: block;
 }
+
+a {
+    transition: all 0.24s;
+
+    &.button {
+        @apply .no-underline .px-4 .py-2 .rounded .text-black;
+
+        &.on-dark {
+            @apply .bg-blue-600 .text-blue-100;
+
+            &:hover {
+                background: hsl(209, 62, 45);
+            }
+        }
+    }
+}
