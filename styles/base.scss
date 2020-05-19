@@ -1,15 +1,15 @@
 h1 {
-    @apply text-2xl;
+    @apply .text-2xl;
 }
 
 h2 {
-    @apply text-xl;
+    @apply .text-xl;
 }
 
 h3 {
-    @apply text-lg;
+    @apply .text-lg .font-bold .mb-1;
 }
 
 a {
-    @apply text-blue-600 underline;
+    @apply .text-blue-600 .underline;
 }
