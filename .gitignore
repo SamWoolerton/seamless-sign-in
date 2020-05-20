@@ -19,3 +19,6 @@
 .env.test.local
 .env.prod.local
 .env.production.local
+
+# Local Netlify folder
+.netlify
