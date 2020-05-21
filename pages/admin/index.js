@@ -1,5 +1,6 @@
 import fetch from "node-fetch"
 import useSWR from "swr"
+import Table from "../../components/Table"
 
 const asJson = url => fetch(url).then(res => res.json())
 
@@ -20,7 +21,7 @@ export default () => {
         <div className="h-screen bg-gray-100 pt-8">
             <div className="text-center text-3xl">Admin UI</div>
 
-            <div className="flex container mx-auto mt-8">
+            <div className="flex flex-wrap container mx-auto mt-8">
                 <div className="card mr-6 mb-4">
                     <h3>Admin config</h3>
                     <div>
@@ -38,11 +39,13 @@ export default () => {
                         ) : !entries ? (
                             <div>Loading entries...</div>
                         ) : (
-                            entries.map(({ id, name, direction }) => (
-                                <div key={id}>
-                                    {id} | {name} | {direction}
-                                </div>
-                            ))
+                            <Table
+                                data={entries}
+                                columns={Object.keys(entries[0]).map(a => ({
+                                    Header: a,
+                                    accessor: a,
+                                }))}
+                            />
                         )}
                     </div>
                 </div>
@@ -55,11 +58,13 @@ export default () => {
                         ) : !active ? (
                             <div>Loading visitors...</div>
                         ) : (
-                            active.map(({ id, name }) => (
-                                <div key={id}>
-                                    {id} | {name}
-                                </div>
-                            ))
+                            <Table
+                                data={active}
+                                columns={Object.keys(active[0]).map(a => ({
+                                    Header: a,
+                                    accessor: a,
+                                }))}
+                            />
                         )}
                     </div>
                 </div>
