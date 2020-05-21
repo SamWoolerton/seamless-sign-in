@@ -18,7 +18,7 @@ export default ({ columns, data }) => {
 
     return (
         <table {...getTableProps()}>
-            <thead>
+            <thead className="uppercase text-gray-600 text-sm font-semibold">
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
@@ -28,6 +28,7 @@ export default ({ columns, data }) => {
                                 {...column.getHeaderProps(
                                     column.getSortByToggleProps(),
                                 )}
+                                className="py-3 text-left"
                             >
                                 {column.render("Header")}
                                 {/* Add a sort direction indicator */}
@@ -43,14 +44,22 @@ export default ({ columns, data }) => {
                     </tr>
                 ))}
             </thead>
-            <tbody {...getTableBodyProps()}>
-                {rows.map(row => {
+            <tbody {...getTableBodyProps()} className="text-gray-700">
+                {rows.map((row, rowIndex) => {
                     prepareRow(row)
                     return (
-                        <tr {...row.getRowProps()}>
+                        <tr
+                            {...row.getRowProps()}
+                            className={
+                                rowIndex % 2 === 0 ? "bg-gray-100" : "bg-white"
+                            }
+                        >
                             {row.cells.map(cell => {
                                 return (
-                                    <td {...cell.getCellProps()}>
+                                    <td
+                                        {...cell.getCellProps()}
+                                        className="px-2 py-3"
+                                    >
                                         {cell.render("Cell")}
                                     </td>
                                 )
