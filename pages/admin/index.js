@@ -1,6 +1,6 @@
 import fetch from "node-fetch"
 import useSWR from "swr"
-import Table from "../../components/Table"
+import Table from "@c/Table"
 
 const asJson = url => fetch(url).then(res => res.json())
 
