@@ -18,7 +18,7 @@ export default ({ columns, data }) => {
 
     return (
         <table {...getTableProps()}>
-            <thead className="uppercase text-gray-600 text-sm font-semibold">
+            <thead className="uppercase text-gray-600 text-sm font-semibold tracking-wide">
                 {headerGroups.map(headerGroup => (
                     <tr {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
@@ -35,8 +35,8 @@ export default ({ columns, data }) => {
                                 <span>
                                     {column.isSorted
                                         ? column.isSortedDesc
-                                            ? " 🔽"
-                                            : " 🔼"
+                                            ? " 🠗"
+                                            : " 🠕"
                                         : ""}
                                 </span>
                             </th>
