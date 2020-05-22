@@ -5,6 +5,7 @@
         "start": "next start"
     },
     "dependencies": {
+        "@nivo/line": "^0.61.1",
         "faker": "^4.1.0",
         "next": "9.3.5",
         "node-fetch": "^2.6.0",

@@ -1,6 +1,7 @@
 import fetch from "node-fetch"
 import useSWR from "swr"
 import Table from "@/components/table"
+import TimeSeriesChart from "@/components/charts/time-series"
 import PlaceholderTable from "@c/placeholders/table"
 import ErrorMessage from "@c/errors/pill-with-text"
 
@@ -19,6 +20,24 @@ export default () => {
         asJson,
     )
 
+    const { data: counts, error: countError } = useSWR(
+        `${apiBaseUrl}/counts`,
+        asJson,
+    )
+
+    // split into sub-arrays based on location key
+    // transform data to x and y to work with Nivo
+    const countsProcessed =
+        counts &&
+        Object.entries(
+            counts.reduce((acc, { date, count, location }) => {
+                if (!acc[location]) acc[location] = []
+                // first 10 characters gets the date portion before T in datetime string
+                acc[location].push({ x: date.substring(0, 10), y: count })
+                return acc
+            }, {}),
+        ).map(([location, data]) => ({ id: location, data }))
+
     return (
         <div className="min-h-screen bg-gray-100 py-12">
             <div className="text-center">
@@ -36,19 +55,19 @@ export default () => {
                         <h3 className="text-gray-700">
                             Customise the welcome screen
                         </h3>
-                    <div>
-                        <div>Set image URL</div>
-                        <input className="bg-gray-200" />
-                        <button onClick={"test"}>Reset</button>
+                        <div>
+                            <div>Set image URL</div>
+                            <input className="bg-gray-200" />
+                            <button onClick={"test"}>Reset</button>
+                        </div>
                     </div>
-                </div>
                 </div>
 
                 <div className="p-2 md:w-1/2 w-full">
                     <div className="card">
                         <h3 className="text-gray-700">Entries by day</h3>
-                        {entries ? (
-                            <div>Chart goes here</div>
+                        {countsProcessed ? (
+                            <TimeSeriesChart data={countsProcessed} />
                         ) : (
                             <div>Loading entries</div>
                         )}
@@ -59,21 +78,21 @@ export default () => {
                     <div className="card">
                         <h3 className="text-gray-700">List of entries</h3>
                         <div className="overflow-x-auto">
-                        {entriesError ? (
+                            {entriesError ? (
                                 <ErrorMessage label="entries" />
-                        ) : !entries ? (
+                            ) : !entries ? (
                                 <PlaceholderTable />
-                        ) : (
-                            <Table
-                                data={entries}
-                                columns={Object.keys(entries[0]).map(a => ({
-                                    Header: a,
-                                    accessor: a,
-                                }))}
-                            />
-                        )}
+                            ) : (
+                                <Table
+                                    data={entries}
+                                    columns={Object.keys(entries[0]).map(a => ({
+                                        Header: a,
+                                        accessor: a,
+                                    }))}
+                                />
+                            )}
+                        </div>
                     </div>
-                </div>
                 </div>
 
                 <div className="p-2 md:w-1/2 w-full">
@@ -82,23 +101,23 @@ export default () => {
                             Visitors who haven't signed out
                         </h3>
                         <div className="overflow-x-auto">
-                        {activeError ? (
+                            {activeError ? (
                                 <ErrorMessage label="active visitors" />
-                        ) : !active ? (
+                            ) : !active ? (
                                 <PlaceholderTable />
-                        ) : (
-                            <Table
-                                data={active}
-                                columns={Object.keys(active[0]).map(a => ({
-                                    Header: a,
-                                    accessor: a,
-                                }))}
-                            />
-                        )}
+                            ) : (
+                                <Table
+                                    data={active}
+                                    columns={Object.keys(active[0]).map(a => ({
+                                        Header: a,
+                                        accessor: a,
+                                    }))}
+                                />
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         </div>
     )
 }
