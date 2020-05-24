@@ -3,6 +3,7 @@ import Head from "next/head"
 import Layout, { siteTitle } from "@c/layout"
 import Table from "@c/table"
 import TimeSeriesChart from "@c/charts/time-series"
+import Kpi from "@c/charts/kpi"
 import PlaceholderTable from "@c/placeholders/table"
 import ErrorMessage from "@c/errors/pill-with-text"
 import { apiBaseUrl, asJson } from "@u/ajax"
@@ -50,6 +51,15 @@ export default () => {
                     </header>
 
                     <div className="flex flex-wrap container mx-auto mt-12">
+                        <div className="p-2 w-full sm:w-auto">
+                            <Kpi value="42" label="visitors last week" />
+                        </div>
+
+                        <div className="w-full px-2 py-4 mt-10 text-gray-600">
+                            <h3>Trends</h3>
+                            <hr />
+                        </div>
+
                         <div className="p-2 md:w-1/2 w-full">
                             <div className="card">
                                 <h3>Entries by day</h3>
