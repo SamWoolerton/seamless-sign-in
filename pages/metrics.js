@@ -70,7 +70,10 @@ export default () => {
                             </div>
                         ) : (
                             kpis.map(({ value, label }) => (
-                                <div className="p-2 w-full sm:w-auto">
+                                <div
+                                    className="p-2 w-full sm:w-auto"
+                                    key={label}
+                                >
                                     <Kpi value={value} label={label} />
                                 </div>
                             ))
