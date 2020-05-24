@@ -46,7 +46,7 @@ export default () => {
                 <title>{siteTitle}</title>
             </Head>
             <section>
-                <div className="py-12">
+                <div className="py-10">
                     <header className="text-center">
                         <div className="text-4xl text-gray-800 font-light">
                             Seamless sign-in

@@ -6,4 +6,6 @@ module.exports = {
             },
         },
     },
+    // explicitly configuring PurgeCSS in postcss.config.js
+    purge: false,
 }
