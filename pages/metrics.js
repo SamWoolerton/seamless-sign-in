@@ -69,12 +69,16 @@ export default () => {
                                 </div>
                             </div>
                         ) : (
-                            kpis.map(({ value, label }) => (
+                            kpis.map(({ value, label, sparkData }) => (
                                 <div
                                     className="p-2 w-full sm:w-auto"
                                     key={label}
                                 >
-                                    <Kpi value={value} label={label} />
+                                    <Kpi
+                                        value={value}
+                                        label={label}
+                                        sparkData={sparkData}
+                                    />
                                 </div>
                             ))
                         )}
