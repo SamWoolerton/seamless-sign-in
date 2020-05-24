@@ -45,11 +45,6 @@ export default () => {
                         }
                     >
                         <div className="text-center text-lg md:text-base md:ml-auto">
-                            <Link href="/">
-                                <a className="block no-underline text-gray-600 hover:text-gray-800 -mt-6 md:mt-0 md:inline-block mr-4">
-                                    Home
-                                </a>
-                            </Link>
                             <Link href="/metrics">
                                 <a className="block no-underline text-gray-600 hover:text-gray-800 mt-5 md:mt-0 md:inline-block mr-4">
                                     Metrics
