@@ -24,6 +24,11 @@ export default () => {
         asJson,
     )
 
+    const { data: kpis, error: kpisError } = useSWR(
+        `${apiBaseUrl}/kpis`,
+        asJson,
+    )
+
     // split into sub-arrays based on location key
     // transform data to x and y to work with Nivo
     const countsProcessed =
@@ -51,9 +56,25 @@ export default () => {
                     </header>
 
                     <div className="flex flex-wrap container mx-auto mt-12">
-                        <div className="p-2 w-full sm:w-auto">
-                            <Kpi value="42" label="visitors last week" />
-                        </div>
+                        {kpisError ? (
+                            <div className="p-2 w-full sm:w-auto">
+                                <div className="card">
+                                    <ErrorMessage label="KPIs" />
+                                </div>
+                            </div>
+                        ) : !kpis ? (
+                            <div className="p-2 w-full sm:w-auto">
+                                <div className="card">
+                                    <div>Loading KPIs</div>
+                                </div>
+                            </div>
+                        ) : (
+                            kpis.map(({ value, label }) => (
+                                <div className="p-2 w-full sm:w-auto">
+                                    <Kpi value={value} label={label} />
+                                </div>
+                            ))
+                        )}
 
                         <div className="w-full px-2 py-4 mt-10 text-gray-600">
                             <h3>Trends</h3>
@@ -63,10 +84,12 @@ export default () => {
                         <div className="p-2 md:w-1/2 w-full">
                             <div className="card">
                                 <h3>Entries by day</h3>
-                                {countsProcessed ? (
-                                    <TimeSeriesChart data={countsProcessed} />
-                                ) : (
+                                {countError ? (
+                                    <ErrorMessage label="kpis" />
+                                ) : !countsProcessed ? (
                                     <div>Loading entries</div>
+                                ) : (
+                                    <TimeSeriesChart data={countsProcessed} />
                                 )}
                             </div>
                         </div>
