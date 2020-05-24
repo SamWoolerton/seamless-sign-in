@@ -1,7 +1,7 @@
 @import "./tailwind";
 @import "./composites";
 
-/* purgecss start ignore */
+/*! purgecss start ignore */
 html,
 body {
     @apply .p-0 .m-0 .bg-gray-100;
@@ -15,7 +15,7 @@ body {
 *::after {
     box-sizing: border-box;
 }
-/* purgecss end ignore */
+/*! purgecss end ignore */
 
 img {
     max-width: 100%;
