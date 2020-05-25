@@ -30,12 +30,8 @@ export default props => {
                     <h3 className="text-2xl font-light">{subtitle}</h3>
 
                     <div className="mt-12">
-                        <a className="button cursor-pointer on-dark mr-6">
-                            Sign in
-                        </a>
-                        <a className="button cursor-pointer on-dark">
-                            Sign out
-                        </a>
+                        <a className="button cursor-pointer mr-6">Sign in</a>
+                        <a className="button cursor-pointer ">Sign out</a>
                     </div>
                 </div>
             </div>

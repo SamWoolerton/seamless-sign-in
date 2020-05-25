@@ -1,0 +1,37 @@
+.navLink {
+    @media (max-width: 599px) {
+        font-weight: 600;
+        padding: 1.5rem 0;
+        border-width: 1px;
+
+        &.active {
+            background: white;
+        }
+
+        &:not(.active) {
+            border-color: transparent;
+        }
+    }
+
+    @media (min-width: 600px) {
+        &::after {
+            content: "";
+            display: block;
+            position: relative;
+            height: 1px;
+            left: 50%;
+            width: 0;
+            background: #718096;
+            transition: all 0.1s;
+        }
+
+        &:hover,
+        &:focus,
+        &.active {
+            &::after {
+                left: 0;
+                width: 100%;
+            }
+        }
+    }
+}

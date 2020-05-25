@@ -1,16 +1,21 @@
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/router"
+import { PaintRoll, BarChartAlt2 } from "@styled-icons/boxicons-solid"
+import { MenuAlt3, X } from "@styled-icons/heroicons-outline"
+import styles from "./navbar.module.scss"
 
 export default () => {
     const [show, setShow] = useState(false)
+    const router = useRouter()
 
     // started from https://tailwindcss.com/components/navigation/#responsive-header
     return (
         <nav className="relative py-10">
-            <div className="absolute top-0 inset-x-0">
+            <div className="fixed z-10 md:absolute top-0 inset-x-0">
                 <div
                     className={
-                        "flex flex-wrap container mx-auto py-6 px-4 relative z-10 bg-gray-100 md:items-center md:justify-between md:px-0 flex-col md:flex-row md:h-auto" +
+                        "flex flex-wrap container mx-auto py-6 px-4 bg-gray-100 md:items-center md:justify-between md:px-0 flex-col md:flex-row md:h-auto" +
                         (show ? " h-screen" : "")
                     }
                 >
@@ -23,17 +28,14 @@ export default () => {
 
                         <div className="block md:hidden">
                             <button
-                                className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 hover:text-gray-600 hover:border-gray-600"
+                                className="p-0 text-gray-500 hover:text-gray-600 clear"
                                 onClick={() => setShow(!show)}
                             >
-                                <svg
-                                    className="fill-current h-3 w-3"
-                                    viewBox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <title>Menu</title>
-                                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                                </svg>
+                                {show ? (
+                                    <X className="h-6 w-6" />
+                                ) : (
+                                    <MenuAlt3 className="h-6 w-6" />
+                                )}
                             </button>
                         </div>
                     </div>
@@ -45,16 +47,35 @@ export default () => {
                         }
                     >
                         <div className="text-center text-lg md:text-base md:ml-auto">
-                            <Link href="/metrics">
-                                <a className="block no-underline text-gray-600 hover:text-gray-800 mt-5 md:mt-0 md:inline-block mr-4">
-                                    Metrics
-                                </a>
-                            </Link>
-                            <Link href="/customise">
-                                <a className="block no-underline text-gray-600 hover:text-gray-800 mt-5 md:mt-0 md:inline-block">
-                                    Customise
-                                </a>
-                            </Link>
+                            {[
+                                {
+                                    url: "/metrics",
+                                    text: "Metrics",
+                                    Icon: BarChartAlt2,
+                                },
+                                {
+                                    url: "/customise",
+                                    text: "Customise",
+                                    Icon: PaintRoll,
+                                },
+                            ].map(({ url, text, Icon }) => (
+                                <Link href={url} key={url}>
+                                    <a
+                                        onClick={() => setShow(false)}
+                                        className={
+                                            `${styles.navLink}  block no-underline text-gray-600 hover:text-gray-800 focus:text-gray-800 border-gray-400 mt-5 md:mt-0 md:inline-block md:mr-4 ` +
+                                            (router.pathname === url
+                                                ? styles.active
+                                                : "")
+                                        }
+                                    >
+                                        <div className="md:hidden">
+                                            <Icon className="h-8 w-8 mb-2" />
+                                        </div>
+                                        <div>{text}</div>
+                                    </a>
+                                </Link>
+                            ))}
                         </div>
                     </div>
                 </div>
