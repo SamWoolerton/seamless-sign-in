@@ -3,6 +3,7 @@ import Head from "next/head"
 import Layout, { siteTitle } from "@c/layout"
 import Table from "@c/table"
 import TimeSeriesChart from "@c/charts/time-series"
+import TreemapChart from "@c/charts/treemap"
 import Kpi from "@c/charts/kpi"
 import PlaceholderTable from "@c/placeholders/table"
 import ErrorMessage from "@c/errors/pill-with-text"
@@ -21,6 +22,11 @@ export default () => {
 
     const { data: counts, error: countError } = useSWR(
         `${apiBaseUrl}/counts`,
+        asJson,
+    )
+
+    const { data: shipments, error: shipmentsError } = useSWR(
+        `${apiBaseUrl}/shipments`,
         asJson,
     )
 
@@ -97,6 +103,21 @@ export default () => {
                                     <div>Loading entries</div>
                                 ) : (
                                     <TimeSeriesChart data={countsProcessed} />
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="p-2 md:w-1/2 w-full">
+                            <div className="card">
+                                <h3>Shipments received this week</h3>
+                                {shipmentsError ? (
+                                    <ErrorMessage label="shipments received" />
+                                ) : !shipments ? (
+                                    <div>Loading shipments</div>
+                                ) : (
+                                    <div className="h-48 mt-4 mb-2">
+                                        <TreemapChart data={shipments} />
+                                    </div>
                                 )}
                             </div>
                         </div>
