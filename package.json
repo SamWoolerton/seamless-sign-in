@@ -13,6 +13,7 @@
         "node-fetch": "^2.6.0",
         "postcss-preset-env": "^6.7.0",
         "react": "16.13.1",
+        "react-beforeunload": "^2.2.1",
         "react-dom": "16.13.1",
         "react-table": "^7.1.0",
         "sass": "^1.26.5",

@@ -5,6 +5,7 @@ import Layout, { siteTitle } from "@c/layout"
 import PreviewWelcomeScreen from "@c/preview-welcome-screen"
 import createPersistedState from "use-persisted-state"
 const useStored = createPersistedState("admin-customise")
+import { useBeforeunload } from "react-beforeunload"
 
 export default () => {
     const [stored, setStored] = useStored({})
@@ -12,6 +13,16 @@ export default () => {
     const [title, setTitle] = useState(stored.title)
     const [subtitle, setSubtitle] = useState(stored.subtitle)
     const [background, setBackground] = useState(stored.background)
+
+    useBeforeunload(() => {
+        const dataSaved =
+            stored.title === title &&
+            stored.subtitle === subtitle &&
+            stored.background === background
+        // note that browsers don't currently use the returned string, but safer to set it in case this behaviour changes in future
+        if (!dataSaved) return "Do you want to save changes before exiting?"
+        return
+    })
 
     return (
         <Layout>
