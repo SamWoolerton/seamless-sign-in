@@ -1,8 +1,9 @@
 const faker = require("faker")
 
 exports.handler = async (event, context) => {
-    const data = new Array(20).fill().map((_, index) => ({
-        id: index,
+    const count = 40 + faker.random.number(20)
+    const data = new Array(count).fill().map((_, index) => ({
+        id: index + 1,
         name: faker.name.findName(),
         entry: faker.date.past(0),
         direction: faker.random.boolean() ? "in" : "out",
