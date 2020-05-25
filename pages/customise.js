@@ -1,11 +1,14 @@
 import Head from "next/head"
 import Link from "next/link"
 import { useState } from "react"
+import Modal from "react-modal"
+import { X } from "@styled-icons/heroicons-outline"
 import Layout, { siteTitle } from "@c/layout"
 import PreviewWelcomeScreen from "@c/preview-welcome-screen"
 import createPersistedState from "use-persisted-state"
 const useStored = createPersistedState("admin-customise")
 import { useBeforeunload } from "react-beforeunload"
+import Unsplash from "@c/unsplash"
 
 export default () => {
     const [stored, setStored] = useStored({})
@@ -13,6 +16,8 @@ export default () => {
     const [title, setTitle] = useState(stored.title)
     const [subtitle, setSubtitle] = useState(stored.subtitle)
     const [background, setBackground] = useState(stored.background)
+
+    const [showModal, setShowModal] = useState(true)
 
     useBeforeunload(() => {
         const dataSaved =
@@ -67,20 +72,52 @@ export default () => {
                                 className="bg-gray-100 px-2 py-1 w-full mb-2"
                                 onChange={e => setSubtitle(e.target.value)}
                             />
-                            <div>
-                                <label
-                                    htmlFor="setBackground"
-                                    className="font-semibold text-gray-700 mt-2"
+                        </div>
+                        <div>
+                            <label
+                                htmlFor="setBackground"
+                                className="font-semibold text-gray-700 mt-2"
+                            >
+                                Background image URL
+                            </label>
+                            <div className="flex">
+                                <input
+                                    id="setBackground"
+                                    className="bg-gray-100 px-2 py-1 w-2/3 mb-2"
+                                    value={background}
+                                    onChange={e =>
+                                        setBackground(e.target.value)
+                                    }
+                                />
+                                <button
+                                    className="w-1/3"
+                                    onClick={() => setShowModal(true)}
                                 >
-                                    Background image URL
-                                </label>
+                                    Open search
+                                </button>
+                                <Modal
+                                    className="container mx-auto"
+                                    overlayClassName="absolute inset-0 z-20 flex justify-center items-center bg-black bg-opacity-25"
+                                    isOpen={showModal}
+                                    onRequestClose={() => setShowModal(false)}
+                                    contentLabel="Background image picker"
+                                >
+                                    <div className="card relative flex flex-col max-h-85vh">
+                                        <X
+                                            className="absolute top-0 right-0 h-8 w-8 pt-3 pr-3 cursor-pointer text-gray-600"
+                                            onClick={() => setShowModal(false)}
+                                        >
+                                            Close
+                                        </X>
+                                        <Unsplash
+                                            onSelect={e => {
+                                                setBackground(e)
+                                                setShowModal(false)
+                                            }}
+                                        />
+                                    </div>
+                                </Modal>
                             </div>
-                            <input
-                                id="setBackground"
-                                className="bg-gray-100 px-2 py-1 w-full mb-2"
-                                value={background}
-                                onChange={e => setBackground(e.target.value)}
-                            />
                         </div>
                     </div>
                     <button

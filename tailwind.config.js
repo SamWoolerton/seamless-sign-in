@@ -7,6 +7,12 @@ module.exports = {
             duration: {
                 base: "0.24",
             },
+            colors: {
+                inherit: "inherit",
+            },
+            maxHeight: {
+                "85vh": "85vh",
+            },
         },
     },
     // explicitly configuring PurgeCSS in postcss.config.js
