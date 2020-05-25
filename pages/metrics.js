@@ -69,11 +69,17 @@ export default () => {
                                 </div>
                             </div>
                         ) : !kpis ? (
-                            <div className="p-2 w-full sm:w-auto">
-                                <div className="card">
-                                    <div>Loading KPIs</div>
+                            new Array(3).fill().map(() => (
+                                <div className="p-2 w-full sm:w-auto">
+                                    <div className="card flex">
+                                        <div className="h-16 w-24 bg-gray-100"></div>
+                                        <div className="ml-4">
+                                            <div className="h-4 w-16 bg-gray-200"></div>
+                                            <div className="h-10 w-16 bg-gray-100 mt-2"></div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            ))
                         ) : (
                             kpis.map(({ value, label, sparkData }) => (
                                 <div
@@ -98,7 +104,7 @@ export default () => {
                             <div className="card">
                                 <h3>Entries by day</h3>
                                 {countError ? (
-                                    <ErrorMessage label="kpis" />
+                                    <ErrorMessage label="entries" />
                                 ) : !countsProcessed ? (
                                     <div>Loading entries</div>
                                 ) : (
