@@ -29,13 +29,13 @@ export default () => {
             <Head>
                 <title>Customise your welcome page | {siteTitle}</title>
             </Head>
-            <div className="container mx-auto mt-6 flex shadow-xl">
-                <div className="relative py-12 w-2/3">
+            <div className="container mx-auto mt-6 flex flex-wrap shadow-xl">
+                <div className="w-full sm:w-2/3 relative py-12">
                     <PreviewWelcomeScreen
                         {...{ title, subtitle, background }}
                     />
                 </div>
-                <div className="w-1/3 bg-white text-gray-800 p-4 md:pb-48">
+                <div className="w-full sm:w-1/3 bg-white text-gray-800 p-4 md:pb-48">
                     <div>
                         <h3 className="mt-2 mb-4 text-gray-700">
                             Customise your welcome page
