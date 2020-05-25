@@ -51,7 +51,7 @@ export default () => {
                                 id="setTitle"
                                 className="bg-gray-100 px-2 py-1 w-full mb-2"
                                 value={title}
-                                onInput={e => setTitle(e.target.value)}
+                                onChange={e => setTitle(e.target.value)}
                             />
                         </div>
                         <div>
@@ -65,7 +65,7 @@ export default () => {
                                 id="setSubtitle"
                                 value={subtitle}
                                 className="bg-gray-100 px-2 py-1 w-full mb-2"
-                                onInput={e => setSubtitle(e.target.value)}
+                                onChange={e => setSubtitle(e.target.value)}
                             />
                             <div>
                                 <label
@@ -79,7 +79,7 @@ export default () => {
                                 id="setBackground"
                                 className="bg-gray-100 px-2 py-1 w-full mb-2"
                                 value={background}
-                                onInput={e => setBackground(e.target.value)}
+                                onChange={e => setBackground(e.target.value)}
                             />
                         </div>
                     </div>

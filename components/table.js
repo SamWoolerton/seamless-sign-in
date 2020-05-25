@@ -121,6 +121,7 @@ export default ({ columns, data }) => {
                                         ? "bg-gray-200 text-gray-900"
                                         : "bg-white text-gray-500")
                                 }
+                                key={text}
                             >
                                 {text}
                             </button>

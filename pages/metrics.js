@@ -69,8 +69,8 @@ export default () => {
                                 </div>
                             </div>
                         ) : !kpis ? (
-                            new Array(3).fill().map(() => (
-                                <div className="p-2 w-full sm:w-auto">
+                            new Array(3).fill().map((_, i) => (
+                                <div className="p-2 w-full sm:w-auto" key={i}>
                                     <div className="card flex">
                                         <div className="h-16 w-24 bg-gray-100"></div>
                                         <div className="ml-4">

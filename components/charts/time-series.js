@@ -12,7 +12,7 @@ export default ({ data }) => (
             xFormat="time:%Y-%m-%d"
             yScale={{
                 type: "linear",
-                min: "0",
+                min: 0,
                 max: "auto",
                 stacked: true,
             }}
