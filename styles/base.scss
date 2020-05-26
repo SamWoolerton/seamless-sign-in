@@ -1,3 +1,22 @@
+html,
+body {
+    // default for other components to override
+    @apply .text-gray-800;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+section,
+div,
+p,
+li {
+    @apply .text-inherit;
+}
+
 h1 {
     @apply .text-2xl;
 }
@@ -10,6 +29,40 @@ h3 {
     @apply .text-lg .font-bold .mb-1;
 }
 
+img {
+    max-width: 100%;
+    display: block;
+}
+
 a {
     @apply .text-blue-600 .underline;
+
+    transition: all 0.24s;
+}
+
+a.button,
+button {
+    @apply .no-underline .px-4 .py-2 .rounded .text-blue-800 .bg-blue-100;
+}
+
+a.on-dark,
+button {
+    @apply .bg-blue-600 .text-blue-100;
+
+    &:hover,
+    &:focus {
+        background: hsl(209, 62, 45);
+    }
+}
+
+button.clear {
+    &,
+    &:hover,
+    &:focus {
+        @apply .bg-transparent;
+    }
+}
+
+th {
+    font-weight: inherit;
 }

@@ -16,39 +16,3 @@ body {
     box-sizing: border-box;
 }
 /*! purgecss end ignore */
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-a {
-    transition: all 0.24s;
-}
-
-a.button,
-button {
-    @apply .no-underline .px-4 .py-2 .rounded .text-blue-800 .bg-blue-100;
-}
-
-a.on-dark,
-button {
-    @apply .bg-blue-600 .text-blue-100;
-
-    &:hover,
-    &:focus {
-        background: hsl(209, 62, 45);
-    }
-}
-
-button.clear {
-    &,
-    &:hover,
-    &:focus {
-        @apply .bg-transparent;
-    }
-}
-
-th {
-    font-weight: inherit;
-}
