@@ -85,11 +85,24 @@ export default function Unsplash({ onSelect }) {
                     <input
                         id="unsplashSearch"
                         value={search}
+                        placeholder="Office..."
                         onChange={e => setSearch(e.target.value)}
+                        onKeyDown={e => e.keyCode === 13 && getImages()}
                         className="bg-gray-100 w-2/3 px-3 py-1"
                     />
-                    <button onClick={getImages} className="w-1/3">
-                        Search
+                    <button
+                        onClick={getImages}
+                        className="w-1/3"
+                        disabled={imageState.state === "loading"}
+                    >
+                        {imageState.state === "loading" ? (
+                            <span className="flex justify-center">
+                                <CircleSpinner color="white" size={24} />
+                                <span className="ml-3">Loading...</span>
+                            </span>
+                        ) : (
+                            "Search"
+                        )}
                     </button>
                 </div>
             </div>
