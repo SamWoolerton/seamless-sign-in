@@ -11,7 +11,12 @@ export default ({ onSelect }) => {
     const [imageState, setImageState] = useState({
         state: "initial",
         images: [],
-            })
+        extra: {
+            page: 1,
+            totalCount: null,
+            state: "initial",
+        },
+    })
 
     const getImages = async () => {
         setImageState({ state: "loading" })
@@ -20,16 +25,41 @@ export default ({ onSelect }) => {
             setImageState({
                 state: "complete",
                 images: images.results,
+                extra: { page: 1, totalCount: images.total, state: "initial" },
             })
         } catch (err) {
             setImageState({ state: "error" })
-    }
+        }
     }
 
-    const getImages = async () =>
-        setImages(
-            (await asJson(`${apiBaseUrl}/images?search=${search}`)).results,
-        )
+    const getMoreImages = async () => {
+        const newPage = imageState.extra.page + 1
+        setImageState({ ...imageState, extra: { state: "loading" } })
+        try {
+            const images = (
+                await asJson(
+                    `${apiBaseUrl}/images?search=${search}&page=${newPage}`,
+                )
+            ).results
+            setImageState({
+                ...imageState,
+                images: [...imageState.images, ...images],
+                extra: {
+                    ...imageState.extra,
+                    page: newPage,
+                    state: "complete",
+                },
+            })
+        } catch (err) {
+            setImageState({
+                ...imageState,
+                extra: {
+                    ...imageState.extra,
+                    state: "error",
+                },
+            })
+        }
+    }
 
     const registerDownload = async id => {
         await asJson(`${apiBaseUrl}/images?id=${id}`)
@@ -89,6 +119,7 @@ export default ({ onSelect }) => {
                         <p>Please try a different search term.</p>
                     </div>
                 ) : (
+                    <div>
                         <Masonry
                             // breakpoints are applied based on "at or below this width, use this many columns"
                             breakpointCols={{
@@ -117,7 +148,7 @@ export default ({ onSelect }) => {
                                             styles.imageAttribution
                                         }
                                     >
-                        <img
+                                        <img
                                             src={small}
                                             onClick={() => {
                                                 // per Unsplash API guidelines
@@ -127,7 +158,7 @@ export default ({ onSelect }) => {
                                                 onSelect(full)
                                             }}
                                             className="cursor-pointer w-full mx-0 mb-4"
-                        />
+                                        />
                                         <a
                                             href={`${html}?utm_source=Seamless sign in&utm_medium=referral`}
                                             className={
@@ -141,6 +172,24 @@ export default ({ onSelect }) => {
                                 ),
                             )}
                         </Masonry>
+
+                        {imageState.extra.state === "initial" ||
+                        imageState.extra.state === "complete" ? (
+                            imageState.extra.totalCount >
+                                imageState.images.length && (
+                                <button
+                                    onClick={getMoreImages}
+                                    className="block mx-auto"
+                                >
+                                    Load more
+                                </button>
+                            )
+                        ) : imageState.extra.state === "loading" ? (
+                            <div className="flex justify-center my-2">
+                                <CircleSpinner color="#718096" size={24} />
+                            </div>
+                        ) : null}
+                    </div>
                 )}
             </div>
             <div className="text-sm text-center text-gray-600 mt-2">
