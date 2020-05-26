@@ -1,5 +1,6 @@
 @import "./tailwind";
 @import "./composites";
+@import "./masonry";
 
 /*! purgecss start ignore */
 html,
@@ -42,7 +43,9 @@ button {
 }
 
 button.clear {
-    &, &:hover, &:focus {
+    &,
+    &:hover,
+    &:focus {
         @apply .bg-transparent;
     }
 }

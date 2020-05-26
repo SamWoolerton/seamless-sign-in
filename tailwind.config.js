@@ -13,6 +13,9 @@ module.exports = {
             maxHeight: {
                 "85vh": "85vh",
             },
+            padding: {
+                full: "100%",
+            },
         },
     },
     // explicitly configuring PurgeCSS in postcss.config.js
