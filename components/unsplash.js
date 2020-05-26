@@ -1,9 +1,9 @@
 import { useState } from "react"
-import Masonry from "react-masonry-css"
 import { ErrorAlt } from "@styled-icons/boxicons-solid"
 import { SearchAlt2 } from "@styled-icons/boxicons-regular"
 import { CircleSpinner } from "react-spinners-kit"
 import { apiBaseUrl, asJson } from "@u/ajax"
+import useWindowSize from "@u/hooks/useWindowSize"
 import styles from "./unsplash.module.scss"
 
 export default function Unsplash({ onSelect }) {
@@ -17,6 +17,11 @@ export default function Unsplash({ onSelect }) {
             state: "initial",
         },
     })
+
+    // minimum 1 column, max 6
+    const { width } = useWindowSize() || { width: columnMinWidth }
+    const columnMinWidth = 250
+    const columns = Math.floor((width > 1500 ? 1500 : width) / columnMinWidth)
 
     const getImages = async () => {
         setImageState({ state: "loading" })
@@ -120,18 +125,7 @@ export default function Unsplash({ onSelect }) {
                     </div>
                 ) : (
                     <div>
-                        <Masonry
-                            // breakpoints are applied based on "at or below this width, use this many columns"
-                            breakpointCols={{
-                                default: 4,
-                                500: 1,
-                                750: 2,
-                                1000: 3,
-                            }}
-                            className="flex w-auto"
-                            className="masonry"
-                            columnClassName="masonry-column"
-                        >
+                        <div style={{ columns }}>
                             {imageState.images.map(
                                 ({
                                     id,
@@ -144,7 +138,7 @@ export default function Unsplash({ onSelect }) {
                                     <div
                                         key={small}
                                         className={
-                                            "relative " +
+                                            "relative mb-4 " +
                                             styles.imageAttribution
                                         }
                                     >
@@ -157,7 +151,7 @@ export default function Unsplash({ onSelect }) {
                                                 // to use in app
                                                 onSelect(full)
                                             }}
-                                            className="cursor-pointer w-full mx-0 mb-4"
+                                            className="cursor-pointer w-full mx-0"
                                         />
                                         <a
                                             href={`${html}?utm_source=Seamless sign in&utm_medium=referral`}
@@ -171,7 +165,7 @@ export default function Unsplash({ onSelect }) {
                                     </div>
                                 ),
                             )}
-                        </Masonry>
+                        </div>
 
                         {imageState.extra.state === "initial" ||
                         imageState.extra.state === "complete" ? (
@@ -179,7 +173,7 @@ export default function Unsplash({ onSelect }) {
                                 imageState.images.length && (
                                 <button
                                     onClick={getMoreImages}
-                                    className="block mx-auto"
+                                    className="block mx-auto mt-4"
                                 >
                                     Load more
                                 </button>
