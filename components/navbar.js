@@ -4,6 +4,7 @@ import { useRouter } from "next/router"
 import { PaintRoll, BarChartAlt2 } from "@styled-icons/boxicons-solid"
 import { MenuAlt3, X } from "@styled-icons/heroicons-outline"
 import styles from "./navbar.module.scss"
+import Logo from "@c/logo"
 
 export default function Navbar() {
     const [show, setShow] = useState(false)
@@ -21,8 +22,11 @@ export default function Navbar() {
                 >
                     <div className="flex justify-between w-full md:w-auto">
                         <Link href="/">
-                            <a className="no-underline font-semibold text-xl tracking-tight text-gray-600">
-                                Seamless
+                            <a className="no-underline font-semibold text-xl tracking-tight text-gray-600 flex items-center">
+                                <Logo
+                                    svgProps={{ className: "h-6 w-6 mr-2" }}
+                                />
+                                <span>Seamless</span>
                             </a>
                         </Link>
 

@@ -7,7 +7,7 @@ export default function Layout({ children, home }) {
     return (
         <>
             <Head>
-                <link rel="icon" href="/favicon.ico" />
+                <link rel="icon" href="/favicon.png" />
             </Head>
 
             <Navbar />
