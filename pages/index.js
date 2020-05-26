@@ -3,7 +3,7 @@ import Layout, { siteTitle } from "@c/layout"
 import Router from "next/router"
 import { useEffect } from "react"
 
-export default () => {
+export default function HomePage() {
     useEffect(() => {
         if (Router.pathname === "/") {
             Router.push("/metrics")

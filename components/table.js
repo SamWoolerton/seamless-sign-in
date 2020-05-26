@@ -3,7 +3,7 @@ import { useTable, useSortBy, usePagination } from "react-table"
 // per examples at
 // sorting: https://github.com/tannerlinsley/react-table/blob/master/examples/sorting/src/App.js
 // pagination: https://github.com/tannerlinsley/react-table/blob/master/examples/pagination/src/App.js
-export default ({ columns, data }) => {
+export default function Table({ columns, data }) {
     const {
         getTableProps,
         getTableBodyProps,

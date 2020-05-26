@@ -5,7 +5,7 @@ import PreviewWelcomeScreen from "@c/preview-welcome-screen"
 import createPersistedState from "use-persisted-state"
 const useStored = createPersistedState("admin-customise")
 
-export default () => {
+export default function PreviewPage() {
     const [stored] = useStored()
 
     return (

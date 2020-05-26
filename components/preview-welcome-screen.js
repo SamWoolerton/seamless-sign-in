@@ -4,7 +4,7 @@ const placeholder = {
     background: "/images/default-background.jpg",
 }
 
-export default props => {
+export default function PreviewWelcomeScreen(props) {
     const withoutEmpty = obj =>
         Object.fromEntries(
             Object.entries(obj).filter(([k, v]) => v !== "" && v !== undefined),

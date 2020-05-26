@@ -10,7 +10,7 @@ const useStored = createPersistedState("admin-customise")
 import { useBeforeunload } from "react-beforeunload"
 import Unsplash from "@c/unsplash"
 
-export default () => {
+export default function CustomisePage() {
     const [stored, setStored] = useStored({})
 
     const [title, setTitle] = useState(stored.title)

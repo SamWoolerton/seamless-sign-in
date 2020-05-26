@@ -9,7 +9,7 @@ import PlaceholderTable from "@c/placeholders/table"
 import ErrorMessage from "@c/errors/pill-with-text"
 import { apiBaseUrl, asJson } from "@u/ajax"
 
-export default () => {
+export default function MetricsPage() {
     const { data: entries, error: entriesError } = useSWR(
         `${apiBaseUrl}/entries`,
         asJson,

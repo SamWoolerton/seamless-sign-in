@@ -6,7 +6,7 @@ import { CircleSpinner } from "react-spinners-kit"
 import { apiBaseUrl, asJson } from "@u/ajax"
 import styles from "./unsplash.module.scss"
 
-export default ({ onSelect }) => {
+export default function Unsplash({ onSelect }) {
     const [search, setSearch] = useState("")
     const [imageState, setImageState] = useState({
         state: "initial",

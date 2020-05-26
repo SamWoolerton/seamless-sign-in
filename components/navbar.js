@@ -5,7 +5,7 @@ import { PaintRoll, BarChartAlt2 } from "@styled-icons/boxicons-solid"
 import { MenuAlt3, X } from "@styled-icons/heroicons-outline"
 import styles from "./navbar.module.scss"
 
-export default () => {
+export default function Navbar() {
     const [show, setShow] = useState(false)
     const router = useRouter()
 
