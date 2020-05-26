@@ -11,6 +11,7 @@ import createPersistedState from "use-persisted-state"
 const useStored = createPersistedState("admin-customise")
 import { useBeforeunload } from "react-beforeunload"
 import Unsplash from "@c/unsplash"
+import ClientOnly from "@c/utility/client-only"
 
 export default function CustomisePage() {
     const [stored, setStored] = useStored({})
@@ -39,10 +40,12 @@ export default function CustomisePage() {
                 <title>Customise your welcome page | {siteTitle}</title>
             </Head>
             <div className="container mt-6 flex flex-wrap shadow-xl p-0">
-                <div className="w-full sm:w-2/3 relative py-12">
-                    <PreviewWelcomeScreen
-                        {...{ title, subtitle, background }}
-                    />
+                <div className="w-full sm:w-2/3 relative py-12 bg-gray-700">
+                    <ClientOnly className="h-full">
+                        <PreviewWelcomeScreen
+                            {...{ title, subtitle, background }}
+                        />
+                    </ClientOnly>
                 </div>
                 <div className="w-full sm:w-1/3 bg-white text-gray-800 p-4 md:pb-48">
                     <div>
@@ -86,14 +89,17 @@ export default function CustomisePage() {
                             </label>
 
                             {/* Use hidden image load events to check whether the URL resolves to a valid image or not */}
-                            <img
-                                className="hidden"
-                                src={background}
-                                onLoad={() => setImageState("complete")}
-                                onError={() =>
-                                    background !== "" && setImageState("error")
-                                }
-                            />
+                            <ClientOnly>
+                                <img
+                                    className="hidden"
+                                    src={background}
+                                    onLoad={() => setImageState("complete")}
+                                    onError={() =>
+                                        background !== "" &&
+                                        setImageState("error")
+                                    }
+                                />
+                            </ClientOnly>
 
                             <div>
                                 {unsplashBg ? (
