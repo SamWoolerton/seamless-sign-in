@@ -30,18 +30,18 @@ exports.handler = async (
 
             return {
                 statusCode: 200,
-                body: "Download successful.",
+                body: JSON.stringify("Download successful."),
             }
         }
 
         return {
             statusCode: 400,
-            body: "Request not recognised.",
+            body: JSON.stringify("Request not recognised."),
         }
     } catch (err) {
         return {
             statusCode: 500,
-            body: "Error handling request.",
+            body: JSON.stringify("Error handling request."),
         }
     }
 }
