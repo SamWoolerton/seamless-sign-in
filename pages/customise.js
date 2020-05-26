@@ -38,7 +38,7 @@ export default function CustomisePage() {
             <Head>
                 <title>Customise your welcome page | {siteTitle}</title>
             </Head>
-            <div className="container mx-auto mt-6 flex flex-wrap shadow-xl">
+            <div className="container mt-6 flex flex-wrap shadow-xl p-0">
                 <div className="w-full sm:w-2/3 relative py-12">
                     <PreviewWelcomeScreen
                         {...{ title, subtitle, background }}
@@ -154,7 +154,7 @@ export default function CustomisePage() {
                                 </div>
                             </div>
                             <Modal
-                                className="container mx-auto"
+                                className="container p-0"
                                 overlayClassName="absolute inset-0 z-20 flex justify-center items-center bg-black bg-opacity-25"
                                 isOpen={showModal}
                                 onRequestClose={() => setShowModal(false)}
@@ -187,7 +187,7 @@ export default function CustomisePage() {
                     </button>
                 </div>
             </div>
-            <div className="container mx-auto mt-12 flex justify-center">
+            <div className="container mt-12 flex justify-center">
                 <Link href="/preview">
                     <a className="button on-dark">Preview in full-screen →</a>
                 </Link>

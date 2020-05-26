@@ -15,7 +15,7 @@ export default function Navbar() {
             <div className="fixed z-10 md:absolute top-0 inset-x-0">
                 <div
                     className={
-                        "flex flex-wrap container mx-auto py-6 px-4 bg-gray-100 md:items-center md:justify-between md:px-0 flex-col md:flex-row md:h-auto" +
+                        "flex flex-wrap container py-6 bg-gray-100 md:items-center md:justify-between flex-col md:flex-row md:h-auto" +
                         (show ? " h-screen" : "")
                     }
                 >
@@ -63,7 +63,7 @@ export default function Navbar() {
                                     <a
                                         onClick={() => setShow(false)}
                                         className={
-                                            `${styles.navLink}  block no-underline text-gray-600 hover:text-gray-800 focus:text-gray-800 border-gray-400 mt-5 md:mt-0 md:inline-block md:mr-4 ` +
+                                            `${styles.navLink}  block no-underline text-gray-600 hover:text-gray-800 focus:text-gray-800 border-gray-400 mt-5 md:mt-0 md:inline-block md:ml-4 ` +
                                             (router.pathname === url
                                                 ? styles.active
                                                 : "")

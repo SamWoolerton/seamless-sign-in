@@ -61,16 +61,19 @@ export default function MetricsPage() {
                         </div>
                     </header>
 
-                    <div className="flex flex-wrap container mx-auto mt-12">
+                    <div className="flex flex-wrap container mt-12">
                         {kpisError ? (
-                            <div className="p-2 w-full sm:w-auto">
+                            <div className="py-2 px-0 sm:px-2 w-full sm:w-auto">
                                 <div className="card">
                                     <ErrorMessage label="KPIs" />
                                 </div>
                             </div>
                         ) : !kpis ? (
                             new Array(3).fill().map((_, i) => (
-                                <div className="p-2 w-full sm:w-auto" key={i}>
+                                <div
+                                    className="py-2 px-0 sm:px-2 w-full sm:w-auto"
+                                    key={i}
+                                >
                                     <div className="card flex">
                                         <div className="h-16 w-24 bg-gray-100"></div>
                                         <div className="ml-4">
@@ -83,7 +86,7 @@ export default function MetricsPage() {
                         ) : (
                             kpis.map(({ value, label, sparkData }) => (
                                 <div
-                                    className="p-2 w-full sm:w-auto"
+                                    className="py-2 px-0 sm:px-2 w-full sm:w-auto"
                                     key={label}
                                 >
                                     <Kpi
@@ -100,7 +103,7 @@ export default function MetricsPage() {
                             <hr />
                         </div>
 
-                        <div className="p-2 md:w-1/2 w-full">
+                        <div className="py-2 px-0 sm:px-2 md:w-1/2 w-full">
                             <div className="card">
                                 <h3>Entries by day</h3>
                                 {countError ? (
@@ -113,7 +116,7 @@ export default function MetricsPage() {
                             </div>
                         </div>
 
-                        <div className="p-2 md:w-1/2 w-full">
+                        <div className="py-2 px-0 sm:px-2 md:w-1/2 w-full">
                             <div className="card">
                                 <h3>Shipments received this week</h3>
                                 {shipmentsError ? (
@@ -133,7 +136,7 @@ export default function MetricsPage() {
                             <hr />
                         </div>
 
-                        <div className="p-2 md:w-1/2 w-full">
+                        <div className="py-2 px-0 sm:px-2 md:w-1/2 w-full">
                             <div className="card">
                                 <h3 className="text-gray-700">
                                     List of entries
@@ -158,7 +161,7 @@ export default function MetricsPage() {
                             </div>
                         </div>
 
-                        <div className="p-2 md:w-1/2 w-full">
+                        <div className="py-2 px-0 sm:px-2 md:w-1/2 w-full">
                             <div className="card">
                                 <h3 className="text-gray-700">
                                     Visitors who haven't signed out

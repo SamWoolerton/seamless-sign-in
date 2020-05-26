@@ -12,7 +12,7 @@ export default function page404() {
             </Head>
             <Navbar />
             <main>
-                <div className="container mx-auto mt-12">
+                <div className="container mt-12">
                     <div className="py-6 flex flex-col justify-center text-center">
                         <ErrorAlt className="h-12 w-12 text-red-800 mx-auto my-4" />
                         <h3 className="text-red-800">404 | Page not found</h3>

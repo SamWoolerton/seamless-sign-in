@@ -14,7 +14,7 @@ export default function Layout({ children, home }) {
 
             <main>{children}</main>
 
-            <footer className="container mx-auto text-center pt-16 pb-6 text-gray-600">
+            <footer className="container text-center pt-16 pb-6 text-gray-600">
                 A demo project by{" "}
                 <a
                     className="no-underline font-semibold text-gray-700 hover:text-blue-800"

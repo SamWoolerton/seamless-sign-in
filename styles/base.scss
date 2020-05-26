@@ -29,6 +29,11 @@ h3 {
     @apply .text-lg .font-bold .mb-1;
 }
 
+.container {
+    // max-width is handled by Tailwind
+    @apply .p-3 .mx-auto;
+}
+
 img {
     max-width: 100%;
     display: block;

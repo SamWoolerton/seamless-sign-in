@@ -15,7 +15,7 @@ export default function HomePage() {
             <Head>
                 <title>{siteTitle}</title>
             </Head>
-            <div className="container mx-auto py-32">
+            <div className="container py-32">
                 <h3 className="text-gray-600 text-center">Loading...</h3>
             </div>
         </Layout>
