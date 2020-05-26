@@ -118,8 +118,8 @@ export default function Table({ columns, data }) {
                                 className={
                                     "mr-1 " +
                                     (cond
-                                        ? "bg-gray-200 text-gray-900"
-                                        : "bg-white text-gray-500")
+                                        ? "bg-gray-200 hover:bg-gray-300 focus:bg-gray-300 text-gray-900"
+                                        : "bg-white hover:bg-white focus:bg-white text-gray-500")
                                 }
                                 key={text}
                             >
