@@ -81,14 +81,14 @@ export default function Unsplash({ onSelect }) {
                 >
                     Start with a search
                 </label>
-                <div className="w-full flex">
+                <div className="w-full flex mt-1">
                     <input
                         id="unsplashSearch"
                         value={search}
                         placeholder="Office..."
                         onChange={e => setSearch(e.target.value)}
                         onKeyDown={e => e.keyCode === 13 && getImages()}
-                        className="bg-gray-100 w-2/3 px-3 py-1"
+                        className="bg-gray-200 w-2/3 px-3 py-1"
                     />
                     <button
                         onClick={getImages}
