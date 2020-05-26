@@ -63,7 +63,7 @@ export default function MetricsPage() {
 
                     <div className="flex flex-wrap container mt-12">
                         {kpisError ? (
-                            <div className="py-2 px-0 sm:px-2 w-full sm:w-auto">
+                            <div className="py-2 px-0 sm:px-2 w-full sm:w-1/2 md:w-auto">
                                 <div className="card">
                                     <ErrorMessage label="KPIs" />
                                 </div>
@@ -71,7 +71,7 @@ export default function MetricsPage() {
                         ) : !kpis ? (
                             new Array(3).fill().map((_, i) => (
                                 <div
-                                    className="py-2 px-0 sm:px-2 w-full sm:w-auto"
+                                    className="py-2 px-0 sm:px-2 w-full sm:w-1/2 md:w-auto"
                                     key={i}
                                 >
                                     <div className="card flex">
@@ -86,7 +86,9 @@ export default function MetricsPage() {
                         ) : (
                             kpis.map(({ value, label, sparkData }) => (
                                 <div
-                                    className="py-2 px-0 sm:px-2 w-full sm:w-auto"
+                                    // if this is w-auto on sm, the label text can push it out and stop it wrapping nicely
+                                    // this forces the text to wrap instead
+                                    className="py-2 px-0 sm:px-2 w-full sm:w-1/2 md:w-auto"
                                     key={label}
                                 >
                                     <Kpi
